@@ -1,5 +1,7 @@
 import random
 import time
+from flask import Flask, abort
+
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
@@ -125,6 +127,9 @@ def cancel_reservation():
 
     return render_template('cancel_reservation.html', tab='cancel_reservation')
 
+@app.route('/favicon.ico')
+def favicon():
+    abort(404)
 
 if __name__ == '__main__':
     app.run()
