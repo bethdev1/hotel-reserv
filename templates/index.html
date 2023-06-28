@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Reservation</title>
+
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            max-width: 300px;
+            height: auto;
+        }
+
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .tabs-container form {
+            margin: 10px;
+        }
+
+        .reservation-form {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Hotel Reservation System</h1>
+<div class="tabs-container">
+    <form action="{{ url_for('make_reservation') }}" method="GET" class="tab" id="make-tab">
+        <input type="submit" value="Make Reservation">
+
+        <form action="#" method="POST" class="tab" id="view-tab">
+            <input type="submit" value="View Reservation">
+        </form>
+
+        <form action="#" method="POST" class="tab" id="modify-tab">
+            <input type="submit" value="Modify Reservation">
+        </form>
+
+        <form action="#" method="POST" class="tab" id="cancel-tab">
+            <input type="submit" value="Cancel Reservation">
+        </form>
+    </div>
+
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='images/frontpage.jpg') }}" alt="Hotel Image">
+    </div>
+
+    <form action="{{ url_for('make_reservation') }}" method="POST" class="reservation-form" id="make-form">
+        <h2>Reservation Form</h2>
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required><br>
+
+        <label for="from_date">From Date:</label>
+        <input type="date" id="from_date" name="from_date" required><br>
+
+        <label for="to_date">To Date:</label>
+        <input type="date" id="to_date" name="to_date" required><br>
+
+        <input type="submit" value="Make Reservation">
+    </form>
+
+    <form action="{{ url_for('view_reservation') }}" method="POST" class="reservation-form" id="view-form">
+        <h2>View Reservation</h2>
+        <label for="confirmation_number">Confirmation Number:</label>
+        <input type="text" id="confirmation_number1" name="confirmation_number" required>
+        <input type="submit" value="Retrieve Reservation">
+    </form>
+
+    <form action="{{ url_for('modify_reservation') }}" method="POST" class="reservation-form" id="modify-form">
+        <h2>Modify Reservation</h2>
+        <label for="confirmation_number">Confirmation Number:</label>
+        <input type="text" id="confirmation_number2" name="confirmation_number" required>
+        <input type="submit" value="Modify Reservation">
+    </form>
+
+    <form action="{{ url_for('cancel_reservation') }}" method="POST" class="reservation-form" id="cancel-form">
+        <h2>Cancel Reservation</h2>
+        <label for="confirmation_number">Confirmation Number:</label>
+        <input type="text" id="confirmation_number" name="confirmation_number" required>
+        <input type="submit" value="Cancel Reservation">
+    </form>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const forms = document.querySelectorAll('.reservation-form');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function(event) {
+                event.preventDefault();
+                const formId = this.id.replace('-tab', '-form');
+
+                forms.forEach(form => {
+                    form.classList.remove('active');
+                });
+
+                document.getElementById(formId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!-- layout.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Reservation</title>
+
+    <style>
+        /* CSS styles for the layout */
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        .tabs {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tabs a {
+            margin-right: 10px; /* Add margin between each tab */
+        }
+
+        .image {
+            width: 900%; /* Adjust the width of the image */
+            max-width: 600px; /* Limit the maximum width of the image */
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px; /* Add margin above the image */
+        }
+
+        .welcome-message {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Hotel Reservation</h1>
+    </div>
+    <div class="tabs">
+        <a href="/make_reservation">Make Reservations</a>
+        <a href="/cancel_reservation">Cancel Reservation</a>
+        <a href="/modify_reservation">Modify Reservation</a>
+        <a href="/view_reservation">View Reservation</a>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <div class="content">
+        <img src="{{ url_for('static', filename='images/frontpage.jpg') }}" alt="Front Page" class="image">
+    </div>
+
+    <div class="welcome-message">
+        <h2>Welcome to our hotel reservation system</h2>
+    </div>
+</body>
+</html>

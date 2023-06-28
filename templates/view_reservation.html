@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Reservation</title>
+</head>
+<body>
+    <h1>View Reservation</h1>
+    <form action="{{ url_for('view_reservation') }}" method="POST">
+        <label for="confirmation_number">Confirmation Number:</label>
+        <input type="text" id="confirmation_number" name="confirmation_number" required>
+        <input type="submit" value="Retrieve Reservation">
+    </form>
+</body>
+</html>

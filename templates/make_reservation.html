@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    {% if tab == 'make_reservation' %}
+        <h1>Make Reservation</h1>
+        <form action="{{ url_for('make_reservation') }}" method="POST">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" required>
+
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" required>
+
+            <label for="start_date">From Date:</label>
+            <input type="date" id="end_date" name="end_date" required>
+            <label for="end_date">To Date:</label>
+
+            <input type="date" id="start_date" name="start_date" required>
+            <input type="submit" value="Search">
+
+        </form>
+    {% endif %}
+{% endblock %}
